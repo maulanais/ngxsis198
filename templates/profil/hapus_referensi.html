@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+          <div class="row">
+              <div class="col-md-3">
+					      <img src="/img/Hapus.jpg">
+              </div>
+              <div class="col-md-9" th:each="item : ${oneprofil}">
+                <a style="color: #a80510; font-size: 18px;text-align: center" >Anda yakin ingin menghapus referensi</a>
+                <a style="color: #a80510; font-size: 18px;text-align: center" th:text="${item.name}"></a>
+                <a style="color: #a80510; font-size: 18px;text-align: center" >?</a><br><br><br>
+              </div>
+              <div class="col-md-7"></div>
+              <div class="col-md-5">
+              <input type="text" id="idDataId">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-secondary button-join-left-hapus"><b>Tidak</b></button>
+                  <button type="button" id="idBtnHapusHapus" data-id="${item.id}" class="btn btn-secondary button-join-right-hapus clBtnMdlHapus"><b>Ya</b></button>
+                </div>
+              </div>
+          </div>			
+</body>
+</html>

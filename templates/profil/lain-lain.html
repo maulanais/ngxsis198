@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+				<div id="fragment">
+					<div class="modal-body">
+					<div class="row">
+  						<div class="col-md-3">
+  							<div class="table-profil">
+  								<a href="/profil" class="profil list-group-item">Profile</a>
+  								<div class="th-profil">Biodata</div>
+  								<div class="th-profil">Pengalaman Kerja</div>
+  								<div class="th-profil">Pendidikan</div>
+  								<div class="th-profil">Pelatihan</div>
+  								<div class="th-profil">Sertifikasi</div>
+  								<div class="th-profil">Sumber Lowongan Kerja</div>
+  								<div class="th-profil">Organisasi</div>
+  								<div class="th-profil">Keuarga</div>
+  								<div class="th-profil">Kealian</div>
+  								<a class="profil-select list-group-item">Lain-lain</a>
+  								<div class="th-profil">Dokumen</div>
+  								<div class="th-profil">Catatan</div>
+  								<div class="th-profil">Aktivasi Akun</div>
+  								<div class="th-profil">Lihat Tes</div>
+  							</div>
+  						</div>
+  						<div class="col-md-9">
+
+  							<div class="table-responsive">
+								<table class="table">
+									<thead class="lain-lain">
+										<tr>
+											<b style="color:#25158c;font-size: 21px">Referensi</b>
+											<b style="color:#25158c;font-size: 15px">(Dosen Pembimbing/Atasan sebelumnya yang dapat dimintai keterangan diri) </b>
+											<button id="btnCirclePlus" type="button" class="btn btn-default btn-circle"><span class="glyphicon glyphicon-plus"></span></button><br>
+										</tr>
+									</thead>
+									<thead class="lain-lain"><br>
+										<tr>
+										<td><b style="color:#25158c;font-size: 15px">NAMA</b></td>
+										<td><b style="color:#25158c;font-size: 15px">ALAMAT</b></td>
+										<td><b style="color:#25158c;font-size: 15px">JABATAN</b></td>
+										<td><b style="color:#25158c;font-size: 15px">HUBUNGAN</b></td>
+										<td><b style="color:#25158c;font-size: 15px">#</td>
+									</tr>
+									</thead>
+										<tbody id="idTbodyRole">
+											<tr th:each="item : ${eachreferensi}" class="lain-lain">
+												<td th:text="${item.name}" class="lain-lain">
+												<input type="hidden" th:text="${item.id}">Nama</td>
+												<td th:text="${item.address_phone}" class="lain-lain">Alamat</td>
+												<td th:text="${item.position}" class="lain-lain">Jabatan</td>
+												<td th:text="${item.relation}" class="lain-lain">Relation</td>
+												<td>  
+												  <div class="dropdown" >
+													  <button class="btn btn-default-profil dropdown-toggle tesBtn" type="button" data-toggle="dropdown"><b>More</b>
+													  <span class="caret"></span></button>
+													  <ul class="dropdown-menu">
+															
+															<li class="clDropdown" data-value="0" 
+															th:data-id="${item.id}" 
+															th:data-name="${item.name}" 
+															th:data-address_phone="${item.address_phone}" 
+															th:data-position="${item.position}"
+															th:data-relation="${item.relation}"><a href="#">Ubah</a></li>
+															
+															<li class="clDropdown" data-value="1" 
+															th:data-id="${item.id}" th:data-name="${item.name}"><a href="#">Hapus</a></li>
+													  </ul>
+													</div>
+												</td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+
+								<div class="table">
+									<table class="table">
+										<thead class="lain-lain">
+											<tr><br>
+												<b style="color:#25158c;font-size: 21px">Keterangan Tambahan </b>
+												<button id="idBtnKeteranganTambahan" type="button" class="btn btn-default-lain-lain"><span class="glyphicon glyphicon-search"></span></button>
+												<button id="idBtnUbahKeteranganTambahan" type="button" class="btn btn-default-lain-lain"><span class="glyphicon glyphicon-pencil"></span></button><br><br>
+											</tr>
+										</thead>
+										<tbody id="idTbodyRole">
+											<tr class="lain-lain">
+												<td class="lain-lain">Gaji yang diharapkan</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">1000000</td>
+											</tr>
+											<tr class="lain-lain">
+												<td class="lain-lain">Negoitable</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">Ya</td>
+											</tr>
+											<tr class="lain-lain">
+												<td class="lain-lain">Kapan Siap Mulai Bekerja</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">Segera</td>
+											</tr>
+											<tr class="lain-lain">
+												<td class="lain-lain">Bersedia ditempatkan diluar kota</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">Ya</td>
+											</tr>
+											<tr class="lain-lain">
+												<td class="lain-lain">Kontak Darutat(Keluarga tidak serumah)</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">Steve Roger</td>
+											</tr>
+											<tr class="lain-lain">
+												<td class="lain-lain">Nomor Kontak Darurat</td>
+												<td class="lain-lain">:</td>
+												<td class="lain-lain">085747755797</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+				  		</div>
+				  	</div>
+					
+				</div>
+			</div>
+			
+<div id="idMdlReferensi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Referensi</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyReferensi">
+				</div>
+			</div>
+		</div>
+	</div>	  	
+	
+	<div id="idMdlEditReferensi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Ubah Referensi</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyEditReferensi">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlUbahKeteranganTambahan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Keterangan Tambahan</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyUbahKeteranganTambahan">
+	</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->			
+
+<script>/* 
+	 */
+/* 
+	
+	$('.list-group-item').click(function(){
+		var url=$(this).attr('href');
+		$.ajax({
+			url : url,
+			type : 'get',
+			dataType : 'html',
+			success : function(result) {
+				$('#fragment').html(result);
+			}
+		});
+		
+		return false;
+	}); */
+	
+</script>
+
+</body>
+</html>

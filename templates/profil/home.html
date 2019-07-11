@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+<label>Profil</label>
+<button id="idbtnplusprofil" type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+<label>Lain-lain</label>
+<button id="idbtnpluslain" type="button"><span class="glyphicon glyphicon-plus-sign"></span></button>
+<br>	
+
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idModalProfil" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-profil" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Detail Pelamar</h4>
+				</div>			
+				<div id="idMdlBodyProfil">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idModalLain" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-profil" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Detail Pelamar</h4>
+				</div>			
+				<div id="idMdlBodyLain">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlReferensi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Referensi</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyReferensi">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlEditReferensi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Ubah Referensi</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyEditReferensi">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlHapusReferensi" class="modal fade" tabindex="-1" role="dialog">
+						<div class="modal-dialog modal-hapus-referensi" role="document">
+							<div class="modal-content">
+								<div class="modal-header modal-header-hapus-referensi">
+        						<a type="button" class="white-red-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+								<h4 class="modal-title modal-title-font">Detail Pelamar</h4>
+							</div>			
+							<div id="idMdlBodyHapusReferensi">
+					
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				
+	<div id="idMdlKeteranganTambahan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Keterangan Tambahan</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyKeteranganTambahan">
+								</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div id="idMdlUbahKeteranganTambahan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Keterangan Tambahan</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyUbahKeteranganTambahan">
+	</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->			
+	
+	
+	
+	<script>
+	
+	$('#idbtnplusprofil').click(function() {
+		var angka = 3;
+		debugger;
+		$.ajax({
+			url : './profil/'+angka,
+			method : 'Get',
+			success : function(model) {
+				debugger;
+				
+				$('#idModalProfil').modal('show');
+				$('#idMdlBodyProfil').html(model);
+				var jenis="${item.gender}";
+				var vJns = '';
+                if (jenis==true) {
+                    vJns = 'Laki - laki';
+                } else {
+                    vJns = 'Perempuan';
+                }
+                $('#Jenis').val(vJns);
+                debugger;
+			},
+			error : function(model) {
+				debugger;
+			}
+		})
+	});
+				
+				
+	$('#idbtnpluslain').click(function() {
+		debugger;
+		$.ajax({
+			url : './lain-lain',
+			method : 'Get',
+			success : function(model) {
+				debugger;
+
+				$('#idModalLain').modal('show');
+				$('#idMdlBodyLain').html(model);
+				
+				$('#btnCirclePlus').click(function() {
+					debugger;
+					$.ajax({
+						url : './referensi',
+						method : 'Get',
+						success : function(model) {
+							debugger;
+
+							$('#idMdlReferensi').modal('show');
+							$('#idMdlBodyReferensi').html(model);
+							
+						},
+						error : function(model) {
+							debugger;
+						}
+					})
+
+				})
+				
+				$('.table-responsive').on('show.bs.dropdown', function () {
+				    $('.table-responsive').css( "overflow", "inherit" );
+					});
+
+					$('.table-responsive').on('hide.bs.dropdown', function () {
+				    $('.table-responsive').css( "overflow", "auto" );
+				});
+				
+					
+				$('.tesBtn').click(function(){
+					debugger;
+					$(this).parent().attr('class','dropdown open');
+				});
+
+				$(".clDropdown").click(function() {
+					debugger;
+					var x = $(this).data('value');
+					var angka = $(this).attr('data-id');
+					var name = $(this).attr('data-name');
+					var position = $(this).attr('data-position');
+					var address_phone = $(this).attr('data-address_phone');
+					var relation = $(this).attr('data-relation');
+					
+					
+					if (x == 0) {
+						$.ajax({
+							url : './edit_referensi',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+								/* jahit model return dari controller ke body modal */
+								$('#idMdlBodyEditReferensi').html(model);
+								/* pop up modalnya */
+								$('#idMdlEditReferensi').modal('show');
+								$('#id').val(angka);
+								$('#name').val(name);
+								$('#position').val(position);
+								$('#address_phone').val(address_phone);
+								$('#relation').val(relation);
+							},
+							error : function(model) {
+								debugger;
+							}
+						});
+					} else if (x == 1) {
+						$('#idDataId').val(angka);
+						$('#idDataName').val(name);
+						debugger;
+						$.ajax({
+							url : './hapus_referensi/'+angka,
+							method : 'Get',
+							success : function(model) {
+								debugger;
+								/* jahit model return dari controller ke body modal */
+								$('#idMdlBodyHapusReferensi').html(model);
+								/* pop up modalnya */
+								$('#idMdlHapusReferensi').modal('show');
+								$('#idDataId').val(angka);
+								debugger;
+								$('#idBtnHapusHapus').click(function() {
+									var angka= $('#idDataId').val();
+									debugger;
+									$.ajax({
+										url : './deletereferensi/'+angka,
+										type : 'DELETE',
+
+										success : function(model) {
+											debugger;
+											alert("Data Berhasil Dihapus");
+											window.location='./home'
+										},
+										error : function(model) {
+											debugger;
+										}
+									});
+								});
+								
+							},
+							error : function(model) {
+								debugger;
+							}
+						});
+					}
+				});
+					
+					$('#idBtnKeteranganTambahan').click(function() {
+						debugger;
+						$.ajax({
+							url : './keterangan_tambahan',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+
+								$('#idMdlKeteranganTambahan').modal('show');
+								$('#idMdlBodyKeteranganTambahan').html(model);
+								
+							},
+							error : function(model) {
+								debugger;
+							}
+						})
+
+					});	
+					
+					$('#idBtnUbahKeteranganTambahan').click(function() {
+						debugger;
+						$.ajax({
+							url : './ubah_keterangan_tambahan',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+
+								$('#idMdlUbahKeteranganTambahan').modal('show');
+								$('#idMdlBodyUbahKeteranganTambahan').html(model);
+								
+							},
+							error : function(model) {
+								debugger;
+							}
+						})
+
+					});	
+				
+							},
+			error : function(model) {
+				debugger;
+			}
+		})
+		
+
+	});
+	
+
+	</script>
+</body>
+</html>

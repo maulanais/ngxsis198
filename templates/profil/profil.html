@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+		<div id="fragment">
+				<div class="modal-body">
+					<div class="row">
+  						<div class="col-md-3">
+  							<div class="table-profil">
+  								<a class="profil-select list-group-item">Profile</a>
+  								<div class="th-profil">Biodata</div>
+  								<div class="th-profil">Pengalaman Kerja</div>
+  								<div class="th-profil">Pendidikan</div>
+  								<div class="th-profil">Pelatihan</div>
+  								<div class="th-profil">Sertifikasi</div>
+  								<div class="th-profil">Sumber Lowongan Kerja</div>
+  								<div class="th-profil">Organisasi</div>
+  								<div class="th-profil">Keuarga</div>
+  								<div class="th-profil">Kealian</div>
+  								<a href="/lain-lain" class="profil list-group-item">Lain-lain</a>
+  								<div class="th-profil">Dokumen</div>
+  								<div class="th-profil">Catatan</div>
+  								<div class="th-profil">Aktivasi Akun</div>
+  								<div class="th-profil">Lihat Tes</div>
+  							</div>
+  						</div>
+  						<div class="col-md-9">
+  							<div class="body-profil">
+  								<a class="col-md-2" href="#"><img src="/img/Profil.jpg"></a>
+  								<div class="col-md-8" th:each="item : ${oneprofil}">
+  									<b style="color:#25158c;font-size: 23px" th:text="${item.fullname}"></b><br>
+  									<b class="profil-name">Java Web Developer</b><br>
+  									<b class="profil-name">25 Tahun</b><br>
+  									<b class="profil-name">Perempuan</b><br>
+  									<b class="profil-name">Teknik Informatika, Harvard Universiy</b><br><br>
+  								</div>
+  								<div class="col-md-1"><br>
+  									<button style="background-color:#25158c;color: white">Unduh</button>
+  								</div>
+  							</div>
+  							<div class="body-profil-grey">
+  								<div class="col-md-3 body-profil-grey"><br>
+  									<b style="color:#25158c;font-size: 21px">Pendidikan</b><br>
+  									<p style="color:blue">2010 - 2015</p><br><br>
+  								</div>
+  								<div class="col-md-9 body-profil-grey"><br><br>
+  									<b class="profil-body"> Harvard University, United State of America</b><br>
+  									<b class="profil-body">Teknik Informatika</b><br>
+  									<b class="profil-body">3.95</b><br><br>
+  								</div>
+  							</div>
+  							<div class="body-profil">
+  								<div class="col-md-3"><br>
+  									<b style="color:#25158c;font-size: 21px">Pengalaman</b><br>
+  									<p style="color:blue">2016 - 2017</p><br>
+  								</div>
+  								<div class="col-md-7"><br><br>
+  									<b class="profil-body">Java Programmer</b><br>
+  									<b class="profil-body">PT. Sumber Makmur</b><br>
+  									<b class="profil-body">3.95</b><br><br>
+  								</div>
+  							</div>
+  							<div class="body-profil-grey">
+  								<div class="col-md-3 body-profil-grey"><br>
+  									<b style="color:#25158c;font-size: 21px">Keterampilan</b><br>
+  									<p style="color:blue">Tingkat Lanjutan<br>
+  									Menengah Pemula</p><br>
+  								</div>
+  								<div class="col-md-9 body-profil-grey"><br><br>
+  									<b class="profil-body">Java, MySQL, Postgres SQL</b><br>
+  									<b class="profil-body">Android</b><br>
+  									<b class="profil-body">React JS</b><br><br>
+  								</div>
+  							</div>
+  							<div class="body-profil">
+  								<div class="col-md-3"><br>
+  									<b style="color:#25158c;font-size: 21px">Training</b><br>
+  									<p style="color:blue">2016 - 2017</p><br>
+  									</div>
+  								<div class="col-md-7">
+  									<br><br>
+  									<b class="profil-body">Android</b><br>
+  									<b class="profil-body">Training Pro</b><br><br>
+  								</div>
+  							</div>
+  							<div class="body-profil-grey">
+  								<div class="col-md-3 body-profil-grey"><br>
+  									<b style="color:#25158c;font-size: 21px">Sertifikasi</b><br>
+  									<p style="color:blue">2018 - 2020</p><br>
+  								</div>
+  								<div class="col-md-9 body-profil-grey"><br><br>
+  									<b class="profil-body">Android - Kotlin</b><br>
+  									<b class="profil-body">Training Pro</b><br><br>
+  								</div>
+  							</div>
+
+  						</div>
+  					</div>
+  				</div>
+  		 </div>
+
+	<script>
+		
+		$('.list-group-item').click(function(){
+			var url=$(this).attr('href');
+			$.ajax({
+				url : url,
+				type : 'get',
+				dataType : 'html',
+				success : function(model) {
+					$('#fragment').html(model);
+				}
+			});
+			
+			return false;
+		});
+	</script>
+
+</body>
+</html>
