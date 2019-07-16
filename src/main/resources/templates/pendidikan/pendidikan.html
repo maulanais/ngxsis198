@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css" />
+<link rel="stylesheet" href="../css/pendidikan.css" />
+<link rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idMdlNewpendidikan" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-edit">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Tambah Pendidikan</h4>
+				</div>
+
+				<div class="modal-body" id="idMdlBodyNewpendidikan"></div>
+
+			</div>
+			<div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- MODAL EDIT -->
+	<div id="idMdlUbahpendidikan" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-edit">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Ubah Pendidikan</h4>
+				</div>
+
+				<form class="form-horizontal" id="idFrmAddPendidikan" method="post">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<!-- LEVEL 1 / KIRI -->
+								<div class="col-xs-8 col-sm-6">
+									<div class="col-xs-12">
+										<input type="hidden" class="form-control" id="editid"
+											name="id" placeholder="">
+									</div>
+									<div class="col-xs-12">
+										<label for="school_name" class="control-label">Nama
+											Sekolah/Instansi<sup>*</sup>
+										</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editschool_name"
+													name="school_name" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12">
+										<label for="education_level_id" class="control-label">Jenjang
+											Pendidikan<sup>*</sup>
+										</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<select class="form-control" id="education_level_id"
+													name="education_level_id">
+													<option id="editeducation_level_id" value="" disabled
+														selected hidden>- Pilih -</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12">
+										<label for="major" class="control-label">Jurusan</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editmajor"
+													name="major" placeholder="">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- LEVEL 2 / KANAN -->
+								<div class="col-xs-4 col-sm-6">
+
+									<div class="col-xs-12 col-sm-12">
+										<div class="row">
+											<div class="col-xs-8 col-sm-6">
+												<label for="city" class="control-label">Kota</label>
+												<div class="form-group">
+													<div class="col-sm-12">
+														<input type="text" class="form-control" id="editcity"
+															name="city" placeholder=""> </select>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-sm-6">
+												<div class="form-group">
+													<label for="country" class="control-label">Negara</label>
+													<div class="col-sm-12">
+														<input type="text" class="form-control" id="editcountry"
+															name="country" placeholder=""> </select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+										<div class="row">
+											<div class="col-xs-8 col-sm-6">
+												<label for="entry_year" class="control-label">Tahun
+													Masuk</label>
+												<div class="form-group">
+													<div class="col-sm-12">
+														<select class="form-control" id="entry_year"
+															name="entry_year">
+															<option id="editentry_year" value="" disabled selected
+																hidden>- Pilih Tahun -</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-4 col-sm-6">
+												<label for="graduation_year" class="control-label">Tahun
+													lulus</label>
+												<div class="form-group">
+
+													<div class="col-sm-12">
+														<select class="form-control" id="graduation_year"
+															name="graduation_year">
+															<option value="" disabled selected hidden
+																id="editgraduation_year">- Pilih Tahun -</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12">
+										<label for="gpa" class="control-label">IPK</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editgpa"
+													name="gpa" placeholder="">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12">
+								<label for="notes" class="control-label">Catatan</label>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<textarea class="form-control" id="editnotes" name="notes"
+											row="5"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-offset-10">
+								<div class="btn-group">
+									
+
+									<button type="button" class="btn btn2">Batal</button>
+									<button type="button" id="idBtnEditPendidikan" class="btn btn1">Edit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
+			</div>
+			<div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- Hapus SERTIFIKASI-->
+	<div id="idMdlHapuspendidikan" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-delete" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-hapus">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Hapus Pendidikan?</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-2">
+								<i class="glyphicon glyphicon-trash center"
+									style="font-size: 50px"></i>
+							</div>
+							<div class="col-xs-8 body-hapus">
+								<div class="clTulisanHapus center" id="idMdlBodyHapuspendidikan">
+									Anda Yakin ingin menghapus <input type="text"
+										class="popup-hapus" id="iddatanamapendidikan" />? <input
+										type="hidden" class="popup-hapus" id="idDataID">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-offset-8">
+						<div class="btn-group">
+							<button type="button" class="btn btn2">Batal</button>
+							<button type="button" id="idBtnHapusHapus"
+								class="btn btn1 clbuttonhapus" data-id="${item.id}">Hapus</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+
+
+	<div id="idDivTablePendidikan"></div>
+	<script>
+		$(document).ready(function() {
+
+			$.ajax({
+				url : './listpendidikan',
+				method : 'Get',
+				success : function(model) {
+					$('#idDivTablePendidikan').html(model);
+				},
+				error : function(model) {
+				}
+			});
+		});
+
+		$('#idBtnHapusHapus').click(function() {
+			debugger;
+			var angka = $('#idDataID').val();
+			debugger;
+			$.ajax({
+				url : '/deletependidikan/' + angka,
+				type : 'DELETE',
+				success : function(model) {
+					debugger;
+					alert("Data terhapus");
+					$('#idMdlHapuspendidikan').modal('hide')
+					debugger;
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		});
+
+		$('#idBtnEditPendidikan').click(function() {
+			//$('#idMdlNewBarang').modal('show');
+			debugger;
+			var vDatapendidikan = $('#idFrmAddPendidikan').serialize();
+			/* panggil url tambah barang menggunakan ajax*/
+			debugger;
+			$.ajax({
+				url : '/editpendidikan',
+				method : 'PUT',
+				data : vDatapendidikan,
+				dataType : "json",
+
+				success : function(model) {
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlUbahpendidikan').modal('hide');
+						/* redirecting to home of barang */
+						debugger;
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			})
+		});
+	</script>
+
+</body>
+</html>

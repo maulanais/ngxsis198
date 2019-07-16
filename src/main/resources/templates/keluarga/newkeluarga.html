@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<form class="form-horizontal" id="idFrmAddKeluarga" method="post">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<!-- LEVEL 1 / KIRI -->
+					<div class="col-xs-8 col-sm-6">
+						<div class="col-xs-12">
+							<label for="family_tree_type_id" class="control-label">Jenis Susunan Keluarga<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="family_tree_type_id"
+										name="family_tree_type_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<label for="name" class="control-label">Nama<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+								<input type="text" class="form-control" id="name" name="name"
+										placeholder="">
+								</div>
+							</div>
+						</div>		
+						<div class="col-xs-12">
+							<label for="education_level_id" class="control-label">Pendidikan</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="education_level_id"
+										name="education_level_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<!-- LEVEL 2 / KANAN -->
+					<div class="col-xs-4 col-sm-6">
+					
+					<div class="col-xs-12">
+							<label for="family_relation_id" class="control-label">Hubungan Keluarga<sup>*</sup></label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="family_relation_id"
+										name="family_relation_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12">
+							<div class="row">
+								<div class="col-xs-8 col-sm-6">
+									<label for="gender" class="control-label">Jenis Kelamin</label>
+									<div class="form-group">
+										<div class="col-sm-12">
+											<select class="form-control" id="gender"
+										name="gender">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-6">
+									<div class="form-group">
+										<label for="dob" class="control-label">Tanggal Lahir</label>
+										<div class="col-sm-12">
+											<input type="date" class="form-control" id="dob"
+												name="dob" placeholder=""> </select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<label for="job" class="control-label">Pekerjaan</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="job" name="job"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<label for="notes" class="control-label">Catatan</label>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<textarea class="form-control" id="notes" name="notes" row="5"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-offset-10">
+					<div class="btn-group">
+						<input type="hidden" name="created_by" value="1" />
+						<button type="button" class="btn btn2">Batal</button>
+						<button type="button" id="idBtnSaveKeluarga" class="btn btn1">Simpan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+	<script type="text/javascript">
+		$('#idBtnSaveKeluarga').click(function() {
+			debugger;
+			var vDatakeluarga = $('#idFrmAddKeluarga').serialize();
+			alert(vDatakeluarga);
+			debugger;
+			$.ajax({
+				url : '/savekeluarga',
+				type : 'POST',
+				data : vDatakeluarga,
+				dataType : "json",
+
+				success : function(model) {
+					debugger;
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlNewkeluarga').modal('hide');
+						/* redirecting to home of barang */
+						debugger;
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		});
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#entry_year').append(options);
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#graduation_year').append(options);
+
+		var options = "";
+		for (var year = 1; year <= 12; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#education_level_id').append(options);
+	</script>
+
+</body>
+</html>

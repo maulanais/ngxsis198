@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<form class="form-horizontal" id="idFrmAddPendidikan" method="post">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<!-- LEVEL 1 / KIRI -->
+					<div class="col-xs-8 col-sm-6">
+
+						<div class="col-xs-12">
+							<label for="school_name" class="control-label">Nama
+								Sekolah/Instansi<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="school_name"
+										name="school_name" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<label for="education_level_id" class="control-label">Jenjang
+								Pendidikan<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="education_level_id"
+										name="education_level_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-xs-12">
+							<label for="major" class="control-label">Jurusan</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="major" name="major"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- LEVEL 2 / KANAN -->
+					<div class="col-xs-4 col-sm-6">
+
+						<div class="col-xs-12 col-sm-12">
+							<div class="row">
+								<div class="col-xs-8 col-sm-6">
+									<label for="city" class="control-label">Kota</label>
+									<div class="form-group">
+										<div class="col-sm-12">
+											<input type="text" class="form-control" id="city" name="city"
+												placeholder=""> </select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-4 col-sm-6">
+									<div class="form-group">
+										<label for="country" class="control-label">Negara</label>
+										<div class="col-sm-12">
+											<input type="text" class="form-control" id="country"
+												name="country" placeholder=""> </select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12">
+
+							<div class="row">
+								<div class="col-xs-8 col-sm-6">
+									<label for="entry_year" class="control-label">Tahun
+										Masuk</label>
+									<div class="form-group">
+										<div class="col-sm-12">
+											<select class="form-control" id="entry_year"
+												name="entry_year">
+												<option value="" disabled selected hidden>- Pilih
+													Tahun -</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-4 col-sm-6">
+									<label for="graduation_year" class="control-label">Tahun
+										lulus</label>
+									<div class="form-group">
+
+										<div class="col-sm-12">
+											<select class="form-control" id="graduation_year"
+												name="graduation_year">
+												<option value="" disabled selected hidden>- Pilih
+													Tahun -</option>
+
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12">
+							<label for="gpa" class="control-label">IPK</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="gpa" name="gpa"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<label for="notes" class="control-label">Catatan</label>
+					<div class="form-group">
+						<div class="col-sm-12">
+							<textarea class="form-control" id="notes" name="notes" row="5"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-offset-10">
+					<div class="btn-group">
+						<input type="hidden" name="created_by" value="1" />
+
+						<button type="button" class="btn btn2">Batal</button>
+						<button type="button" id="idBtnSavePendidikan" class="btn btn1">Simpan</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+	<script type="text/javascript">
+	
+	var options = "";
+	for (var year = 2009; year <= 2030; year++) {
+		options += "<option>" + year + "</option>";
+	}
+	$('#entry_year').append(options);
+
+	var options = "";
+	for (var year = 2009; year <= 2030; year++) {
+		options += "<option>" + year + "</option>";
+	}
+	$('#graduation_year').append(options);
+
+	var options = "";
+	for (var year = 1; year <= 12; year++) {
+		options += "<option>" + year + "</option>";
+	}
+	$('#education_level_id').append(options);
+	
+</script><Script>
+		
+	
+		$('#idBtnSavePendidikan').click(function() {
+			
+			if ($('#school_name').val().length == 0 || $('#education_level_id').val().length == 0){
+				alert("Nama Sekolah dan Jenjang pendidikan tidak boleh kosong");
+			} else {
+			
+			debugger;
+			var vDatapendidikan = $('#idFrmAddPendidikan').serialize();
+			alert(vDatapendidikan);
+			debugger;
+			$.ajax({
+				url : '/savependidikan',
+				type : 'POST',
+				data : vDatapendidikan,
+				dataType : "json",
+
+				success : function(model) {
+					debugger;
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlNewpendidikan').modal('hide');
+
+						/* redirecting to home of barang */
+						debugger;
+
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		}
+		});
+
+		
+
+		</script>
+
+</body>
+</html>

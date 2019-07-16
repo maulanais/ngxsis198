@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css" />
+<link rel="stylesheet" href="../css/pendidikan.css" />
+<link rel="stylesheet" href="../css/style.css" />
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idMdlNewkeluarga" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-edit">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Tambah Keluarga</h4>
+				</div>
+
+				<div class="modal-body" id="idMdlBodyNewkeluarga"></div>
+
+			</div>
+			<div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- MODAL EDIT -->
+	<div id="idMdlUbahkeluarga" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-edit">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Ubah Keluarga</h4>
+				</div>
+
+				<form class="form-horizontal" id="idFrmAddKeluarga" method="post">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+								<!-- LEVEL 1 / KIRI -->
+					<div class="col-xs-8 col-sm-6">
+						<div class="col-xs-12">
+							<label for="family_tree_type_id" class="control-label">Jenis Susunan Keluarga<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="family_tree_type_id"
+										name="family_tree_type_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<label for="name" class="control-label">Nama<sup>*</sup>
+							</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+								<input type="text" class="form-control" id="name" name="name"
+										placeholder="">
+								</div>
+							</div>
+						</div>		
+						<div class="col-xs-12">
+							<label for="education_level_id" class="control-label">Pendidikan</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="education_level_id"
+										name="education_level_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<!-- LEVEL 2 / KANAN -->
+					<div class="col-xs-4 col-sm-6">
+					
+					<div class="col-xs-12">
+							<label for="family_relation_id" class="control-label">Hubungan Keluarga<sup>*</sup></label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<select class="form-control" id="family_relation_id"
+										name="family_relation_id">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-12">
+							<div class="row">
+								<div class="col-xs-8 col-sm-6">
+									<label for="gender" class="control-label">Jenis Kelamin</label>
+									<div class="form-group">
+										<div class="col-sm-12">
+											<select class="form-control" id="gender"
+										name="gender">
+										<option value="" disabled selected hidden>- Pilih -</option>
+									</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-6">
+									<div class="form-group">
+										<label for="dob" class="control-label">Tanggal Lahir</label>
+										<div class="col-sm-12">
+											<input type="date" class="form-control" id="dob"
+												name="dob" placeholder=""> </select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12">
+							<label for="job" class="control-label">Pekerjaan</label>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<input type="text" class="form-control" id="job" name="job"
+										placeholder="">
+								</div>
+							</div>
+						</div>
+					</div>
+							</div>
+							<div class="col-xs-12">
+								<label for="notes" class="control-label">Catatan</label>
+								<div class="form-group">
+									<div class="col-sm-12">
+										<textarea class="form-control" id="editnotes" name="notes"
+											row="5"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-offset-10">
+								<div class="btn-group">
+									<input type="hidden" name="created_by" value="1" />
+
+									<button type="button" class="btn btn2">Batal</button>
+									<button type="button" id="idBtnEditKeluarga" class="btn btn1">Edit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
+			</div>
+			<div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- Hapus SERTIFIKASI-->
+	<div id="idMdlHapuskeluarga" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-delete" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-hapus">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Hapus Keluarga?</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-2">
+								<i class="glyphicon glyphicon-trash center"
+									style="font-size: 50px"></i>
+							</div>
+							<div class="col-xs-8 body-hapus">
+								<div class="clTulisanHapus center" id="idMdlBodyHapuskeluarga">
+									Anda Yakin ingin menghapus <input type="text"
+										class="popup-hapus" id="iddatanamakeluarga" />? <input
+										type="hidden" class="popup-hapus" id="idDataID">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-offset-8">
+						<div class="btn-group">
+							<button type="button" class="btn btn2">Batal</button>
+							<button type="button" id="idBtnHapusHapus"
+								class="btn btn1 clbuttonhapus" data-id="${item.id}">Hapus</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+
+
+	<div id="idDivTableKeluarga"></div>
+	<script>
+		$(document).ready(function() {
+
+			$.ajax({
+				url : './listkeluarga',
+				method : 'Get',
+				success : function(model) {
+					$('#idDivTableKeluarga').html(model);
+				},
+				error : function(model) {
+				}
+			});
+		});
+
+		$('#idBtnHapusHapus').click(function() {
+			debugger;
+			var angka = $('#idDataID').val();
+			debugger;
+			$.ajax({
+				url : '/deletekeluarga/' + angka,
+				type : 'DELETE',
+				success : function(model) {
+					debugger;
+					alert("Data terhapus");
+					debugger;
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		});
+
+		$('#idBtnEditKeluarga').click(function() {
+			//$('#idMdlNewBarang').modal('show');
+			debugger;
+			var vDatakeluarga = $('#idFrmAddKeluarga').serialize();
+			/* panggil url tambah barang menggunakan ajax*/
+			debugger;
+			$.ajax({
+				url : '/editkeluarga',
+				method : 'PUT',
+				data : vDatakeluarga,
+				dataType : "json",
+
+				success : function(model) {
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlUbahkeluarga').modal('hide');
+						/* redirecting to home of barang */
+						debugger;
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			})
+		});
+	</script>
+
+</body>
+</html>

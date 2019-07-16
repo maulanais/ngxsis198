@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet">
+<link href="../styles/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../css/pendidikan.css" />
+<link rel="stylesheet" href="../css/style.css" />
+
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+	<div id="idDivTablePendidikan"></div>
+
+	<!-- MODAL EDIT -->
+	<div id="idMdlUbahbiodata" class="modal fade" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-edit">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title-font">Ubah Biodata</h4>
+				</div>
+
+				<form class="form-horizontal" id="idFrmAddBiodata" method="post">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="row">
+
+								<!-- LEVEL 1 / KIRI -->
+								<div class="col-xs-8 col-sm-6">
+									<div class="col-xs-12">
+										<input type="hidden" class="form-control" id="editid"
+											name="id" placeholder="">
+									</div>
+									<div class="col-xs-12">
+										<label for="fullname" class="control-label">Nama
+											Lengkap<sup>*</sup>
+										</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editfullname"
+													name="fullname" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="pob" class="control-label">Tempat Lahir<sup>*</sup>
+										</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editpob"
+													name="pob" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="dob" class="control-label">Tgl.Lahir(yyyy-mm-dd)</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editdob"
+													name="dob" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="high" class="control-label">Tinggi</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="edithigh"
+													name="high" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="weight" class="control-label">Berat</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editweight"
+													name="weight" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12">
+										<label for="hobby" class="control-label">Kegemaran/Hobi</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="edithobby"
+													name="hobby" placeholder="">
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4 col-sm-6">
+										<label for="email" class="control-label">Email</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editemail"
+													name="email" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="phone_number1" class="control-label">No.HP</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control"
+													id="editphone_number1" name="phone_number1" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="child_sequence" class="control-label">Anak
+											Ke</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control"
+													id="editchild_sequence" name="child_sequence"
+													placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="how_many_brothers" class="control-label">Dari
+											Berapa Bersaudara</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control"
+													id="edithow_many_brothers" name="how_many_brothers"
+													placeholder="">
+											</div>
+										</div>
+									</div>
+									<label for="how_many_brothers" class="control-label">Alamat
+										Sesuai Kartu Identitas</label>
+									<div class="col-xs-12 col-sm-12">
+										<div class="row">
+											<div class="col-xs-12">
+												<label for="nick_name" class="control-label">Alamat</label>
+												<div class="form-group">
+													<div class="col-sm-12">
+														<input type="text" class="form-control" id="editnick_name"
+															name="nick_name" placeholder="">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+
+										<div class="col-xs-6">
+											<label for="nick_name" class="control-label">Kode Pos</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-3">
+											<label for="nick_name" class="control-label">RT</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-3">
+											<label for="nick_name" class="control-label">RW</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div class="col-xs-12 col-sm-12">
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Desa/Kelurahan</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Kecamatan</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Kota</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+								<!-- LEVEL 2 / KANAN -->
+								<div class="col-xs-4 col-sm-6">
+
+									<div class="col-xs-12 col-sm-12">
+										<div class="row">
+											<div class="col-xs-12">
+												<label for="nick_name" class="control-label">Nama
+													Panggilan</label>
+												<div class="form-group">
+													<div class="col-sm-12">
+														<input type="text" class="form-control" id="editnick_name"
+															name="nick_name" placeholder="">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4 col-sm-6">
+										<label for="gender" class="control-label">Jenis
+											Kelamin</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editgender"
+													name="gender" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-4 col-sm-6">
+											<label for="religion_id" class="control-label">Agama</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control"
+														id="editreligion_id" name="religion_id" placeholder="">
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xs-4 col-sm-6">
+										<label for="nationality" class="control-label">Kewarganegaraan</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editnationality"
+													name="nationality" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-6">
+										<label for="ethnic" class="control-label">Suku Bangsa</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editethnic"
+													name="ethnic" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">Jenis
+											Identitas</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">Nomor
+											Identitas</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">No.HP
+											Alternatif</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">No.Tlp
+											(Rumah/Orang Tua)</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">Status
+											Pernikahan</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8 col-sm-6">
+										<label for="religion_id" class="control-label">Tahun
+											Pernikahan</label>
+										<div class="form-group">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="editreligion_id"
+													name="religion_id" placeholder="">
+											</div>
+										</div>
+									</div>
+									<label for="how_many_brothers" class="control-label">Alamat
+										Sesuai Tempat Tinggal Saat Ini</label>
+									<div class="col-xs-12 col-sm-12">
+										<div class="row">
+											<div class="col-xs-12">
+												<label for="nick_name" class="control-label">Alamat</label>
+												<div class="form-group">
+													<div class="col-sm-12">
+														<input type="text" class="form-control" id="editnick_name"
+															name="nick_name" placeholder="">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12">
+
+										<div class="col-xs-6">
+											<label for="nick_name" class="control-label">Kode Pos</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-3">
+											<label for="nick_name" class="control-label">RT</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-3">
+											<label for="nick_name" class="control-label">RW</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div class="col-xs-12 col-sm-12">
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Desa/Kelurahan</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Kecamatan</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-xs-4">
+											<label for="nick_name" class="control-label">Kota</label>
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" class="form-control" id="editnick_name"
+														name="nick_name" placeholder="">
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-md-offset-10">
+								<div class="btn-group">
+									<input type="hidden" name="created_by" value="1" />
+
+									<button type="button" class="btn btn2">Batal</button>
+									<button type="button" id="idBtnEditPendidikan" class="btn btn1">Simpan</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+
+			</div>
+			<div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<script>
+		$(document).ready(function() {
+
+			$.ajax({
+				url : './listbiodata',
+				method : 'Get',
+				success : function(model) {
+					$('#idDivTablePendidikan').html(model);
+				},
+				error : function(model) {
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<label><h1>Pendidikan</h1></label>
+	<button type="button" class="btn btn-circle idbtnplus">
+		<span class="glyphicon glyphicon-plus" style="color: white"></span>
+	</button>
+	<br>
+	<br>
+	<hr>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Sekolah/Intansi</td>
+					<td>Jenjang</td>
+					<td>Periode</td>
+					<td>Jurusan</td>
+					<td>IPK</td>
+					<td>#</td>
+				</tr>
+			</thead>
+			<tbody id="idTbodyPendidikan">
+				<tr th:each="item : ${keypendidikan}">
+					<td th:text="${item.school_name}">Sekolah/Intansi</td>
+					<td ><input class="clInputEducationId" value="" th:value="${item.education_level_id}" /></td>
+					<td th:text="${item.entry_year + '-' + item.graduation_year}">Periode</td>
+					<td th:text="${item.major}">Jurusan</td>
+					<td th:text="${item.gpa}">IPK</td>
+					<td>
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								More <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li class="clDropdownubah" data-value="0"
+									th:data-id="${item.id}" th:data-nmsekolah="${item.school_name}"
+									th:data-jenjang="${item.education_level_id}"
+									th:data-jurusan="${item.major}" th:data-kota="${item.city}"
+									th:data-negara="${item.country}"
+									th:data-tmasuk="${item.entry_year}"
+									th:data-tlulus="${item.graduation_year}"
+									th:data-ipk="${item.gpa}" th:data-catatan="${item.notes}"><a
+									href="#">Ubah</a></li>
+								<li class="clDropdown" data-value="1" th:data-id="${item.id}"
+									th:data-nmsekolah="${item.school_name}"><a href="#">Hapus</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url:'/listeducation',
+				type:'Get',
+				success: function(mdl){
+					debugger;
+				},
+				error: function(mdl){
+					debugger;
+				}
+			});
+		});
+		$('.table-responsive').on('show.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "inherit");
+		});
+		$('.table-responsive').on('hide.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "auto");
+		});
+		$('.idbtnplus').click(function() {
+			debugger;
+			//$('#idMdlNewBarang').modal('show');
+
+			/* panggil url tambah barang menggunakan ajax*/
+			$.ajax({
+				url : './newpendidikan',
+				method : 'Get',
+				success : function(model) {
+					/* jahit model return dari controller ke body modal */
+					$('#idMdlBodyNewpendidikan').html(model);
+					/* pop up modalnya */
+					$('#idMdlNewpendidikan').modal('show');
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		});
+		$('.clDropdown').click(function() {
+			debugger;
+			$('#idMdlHapuspendidikan').modal('show');
+			$('#idDataID').val($(this).attr('data-id'));
+			$('#iddatanamapendidikan').val($(this).attr('data-nmsekolah'));
+			debugger;
+		});
+		$('.clDropdownubah').click(function() {
+			debugger;
+			$('#editid').val($(this).attr('data-id'));
+			$('#editschool_name').val($(this).attr('data-nmsekolah'));
+			$('#editeducation_level_id').text($(this).attr('data-jenjang'));
+			$('#editmajor').val($(this).attr('data-jurusan'));
+			$('#editcity').val($(this).attr('data-kota'));
+			$('#editcountry').val($(this).attr('data-negara'));
+			$('#editentry_year').text($(this).attr('data-tmasuk'));
+			$('#editgraduation_year').text($(this).attr('data-tlulus'));
+			$('#editgpa').val($(this).attr('data-ipk'));
+			$('#editnotes').val($(this).attr('data-catatan'));
+			debugger;
+			$('#idMdlUbahpendidikan').modal('show');
+		});
+
+		$('#idDropdownubah').click(function() {
+			//$('#idMdlNewBarang').modal('show');
+			debugger;
+			var vDatapendidikan = $('#idFrmAddEditPendidikan').serialize();
+			/* panggil url tambah barang menggunakan ajax*/
+			$.ajax({
+				url : '/editpendidikan',
+				method : 'PUT',
+				data : vDatapendidikan,
+				dataType : "json",
+				success : function(model) {
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlUbahpendidikan').modal('hide');
+						/* redirecting to home of barang */
+						debugger;
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			})
+		});
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#entry_year').append(options);
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#graduation_year').append(options);
+
+		var options = "";
+		for (var year = 1; year <= 12; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#education_level_id').append(options);
+	</script>
+</body>
+</html>

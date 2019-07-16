@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<label><h1>Keluarga</h1></label>
+	<button type="button" class="btn btn-circle idbtnplus">
+		<span class="glyphicon glyphicon-plus" style="color: white"></span>
+	</button>
+	<br>
+	<br>
+	<hr>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Hubungan</td>
+					<td>Nama</td>
+					<td>JK</td>
+					<td>TGL.Lahir</td>
+					<td>Pendidikan</td>
+					<td>Pekerjaan</td>
+					<td>#</td>
+				</tr>
+			</thead>
+			<tbody id="idTbodyKeluarga">
+				<tr th:each="item : ${keykeluarga}">
+					<td th:text="${item.family_relation_id}">Hubungan</td>
+					<td th:text="${item.name}">Nama</td>
+					<td th:text="${item.gender}">JK</td>
+					<td th:text="${item.dob}">TGL.Lahir</td>
+					<td th:text="${item.education_level_id}">Pendidikan</td>
+					<td th:text="${item.job}">Pekerjaan</td>
+					<td>
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								More <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li class="clDropdownubah" data-value="0"
+									th:data-id="${item.id}"
+									th:data-hubungan="${item.family_relation_id}"
+									th:data-nama="${item.name}" th:data-gender="${item.gender}"
+									th:data-dob="${item.dob}"
+									th:data-jenjang="${item.education_level_id}"
+									th:data-pekerjaan="${item.job}" th:data-catatan="${item.notes}"><a
+									href="#">Ubah</a></li>
+								<li class="clDropdown" data-value="1" th:data-id="${item.id}"
+									th:data-nama="${item.name}"><a
+									href="#">Hapus</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		 
+	</div>
+	<script>
+		$('.table-responsive').on('show.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "inherit");
+		});
+		$('.table-responsive').on('hide.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "auto");
+		});
+		$('.idbtnplus').click(function() {
+			debugger;
+			//$('#idMdlNewBarang').modal('show');
+
+			/* panggil url tambah barang menggunakan ajax*/
+			$.ajax({
+				url : './newkeluarga',
+				method : 'Get',
+				success : function(model) {
+					/* jahit model return dari controller ke body modal */
+					$('#idMdlBodyNewkeluarga').html(model);
+					/* pop up modalnya */
+					$('#idMdlNewkeluarga').modal('show');
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+		});
+		$('.clDropdown').click(function() {
+			debugger;
+			$('#idMdlHapuskeluarga').modal('show');
+			$('#idDataID').val($(this).attr('data-id'));
+			$('#iddatanamakeluarga').val($(this).attr('data-nama'));
+			debugger;
+		});
+		$('.clDropdownubah').click(function() {
+			debugger;
+			$('#editid').val($(this).attr('data-id'));
+			$('#editfamily_relation_id').val($(this).attr('data-hubungan'));
+			$('#editname').text($(this).attr('data-nama'));
+			$('#editgender').val($(this).attr('data-gender'));
+			$('#editdob').val($(this).attr('data-dob'));
+			$('#editeducation_level_id').val($(this).attr('data-jenjang'));
+			$('#editjob').text($(this).attr('data-pekerjaan'));
+			$('#editnotes').val($(this).attr('data-catatan'));
+			debugger;
+			$('#idMdlUbahkeluarga').modal('show');
+		});
+
+		$('#idDropdownubah').click(function() {
+			//$('#idMdlNewBarang').modal('show');
+			debugger;
+			var vDatakeluarga = $('#idFrmAddEditKeluarga').serialize();
+			/* panggil url tambah barang menggunakan ajax*/
+			$.ajax({
+				url : '/editkeluarga',
+				method : 'PUT',
+				data : vDatakeluarga,
+				dataType : "json",
+				success : function(model) {
+					if (model.status == "berhasil") {
+						alert("Data berhasil disimpan");
+						$('#idMdlUbahkeluarga').modal('hide');
+						/* redirecting to home of barang */
+						debugger;
+					} else {
+						alert("Data salah");
+					}
+				},
+				error : function(model) {
+					debugger;
+				}
+			})
+		});
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#entry_year').append(options);
+
+		var options = "";
+		for (var year = 2009; year <= 2030; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#graduation_year').append(options);
+
+		var options = "";
+		for (var year = 1; year <= 12; year++) {
+			options += "<option>" + year + "</option>";
+		}
+		$('#education_level_id').append(options);
+	</script> 
+</body>
+</html>

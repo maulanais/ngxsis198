@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="../css/style.css" rel="stylesheet">
+<link href="../styles/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+	<div class="class-login">
+		<center>
+			<form>
+				<br>
+				<h1>
+					<label>XSIS 2.0</label>
+				</h1>
+				<input type="email" name="username" id="username" class="form_login"
+					placeholder="email .."> <br /> <input type="password"
+					name="password" id="password" class="form_login"
+					placeholder="Password .."> <br />
+				<button type="button" class="tombol_login" name="login" id="idlogin">Masuk</button>
+				<br /> <a class="link" href="">Lupa Password</a> <br> <br>
+				<label>2020 - Xsis Mitra Utama</label>
+			</form>
+		</center>
+	</div>
+	<div id="iddivhomepage"></div>
+	<script>
+		$('#idlogin').click(function() {
+			debugger;
+			// Cek isi kotak teks username
+			if (username.value == "") {
+				alert("Username Harus Di Isi");
+				username.focus();
+				debugger;
+			} else
+			// Cek isi kotak teks password
+			if (password.value == "") {
+				alert("Password Harus Di Isi");
+				password.focus();
+				debugger;
+			} else if (username.value != "" && password.value != "") {
+				debugger;
+
+				$.ajax({
+					url : './homepage',
+					method : 'Get',
+					success : function(model) {
+						$('#iddivhomepage').html(model)
+						debugger;
+						window.location = "homepage";
+					},
+					error : function(model) {
+						debugger;
+					}
+				});
+
+			} else
+				debugger;
+				window.location = "";
+		});
+	</script>
+</body>
+</html>
