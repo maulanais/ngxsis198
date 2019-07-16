@@ -1,0 +1,57 @@
+@charset "ISO-8859-1";
+
+hr {
+    height: 5px;
+    color: #010067;
+    background-color: #010067;
+    border: ;
+}
+
+th, td {
+	color: #010067;
+  border-bottom: 2px solid #010067;
+}
+
+.clKepalaTable{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.modal-sertifikasi{
+	width: 900px;
+	margin-top: 100px;
+}
+
+.modal-hapussertifikasi{
+	width: 650px;
+	margin-top: 250px;
+	
+}
+
+.clBtnMdl{
+	background-color: #000066;
+	color: #FFFFFF;	
+}
+
+.clBtnMdl:hover{
+	background-color: #FF6600;
+	color: #FFFFFF;
+}
+
+div.clTulisanHapus{
+	font-size: 22px;
+	color: #990000;
+	text-align: center;
+}
+
+div.clMdlHeaderHapus{
+	background-color: #990000;
+	color: #FFFFFF;
+	
+}
+
+div.clMdlHeader{
+	background-color:#000066; 
+	color: #FFFFFF;
+}
+

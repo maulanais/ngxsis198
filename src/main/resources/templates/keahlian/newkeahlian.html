@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form id="form-addkeahlian" th:action="@{~/keahlian/save}" th:object="${keahlian}" method="POST">
+	<div class="modal-header modal-addkeahlianheader">
+		<button type="button" class="close btn-xs" id="btn-close-form"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title modal-addkeahliantitle">Tambah Keahlian </h4>
+		
+		<!-- Biodata ID, dengan HIDDEN -->
+		<input type="hidden" th:field="*{biodataId}" />
+		<input type="hidden" th:field="*{id}" />
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div th:class="${#fields.hasErrors('skillName')} ? 'form-group has-error':'form-group'">
+					<label>Nama Keahlian</label>
+					<input type="text" th:field="*{skillName}" class="form-control" maxlength="100" id="idAddSkillName"/>
+					<span th:if="${#fields.hasErrors('skillName')}" class="help-block" th:errors="*{skillName}">pesan error</span>
+				</div>
+			</div>			
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div th:class="${#fields.hasErrors('skillLevelId')} ? 'form-group has-error':'form-group'">
+					<label>Level Keahlian<sup>*</sup></label>
+					<select th:field="*{skillLevelId}" class="form-control" id="idAddSkillLevel">
+						<option value="">- Pilih Level-</option>
+						<option th:each="item : ${listSkill}" th:text="${item.name}" th:value="${item.id}"></option>
+					</select>
+					<span th:if="${#fields.hasErrors('skillLevelId')}" class="help-block" th:errors="*{skillLevelId}">pesan error</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div th:class="${#fields.hasErrors('notes')} ? 'form-group has-error':'form-group'">
+					<label>Catatan</label>
+					<textarea th:field="*{notes}" class="form-control" rows="4" maxlength="1000"> </textarea>
+					<span th:if="${#fields.hasErrors('notes')}" class="help-block" th:errors="*{notes}">pesan error</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<div class="btn-group">
+       		<button type="button" class="btn btn-warning" id="btn-close-form">Batal</button>
+       		<button type="submit" class="btn btn-primary save-form" th:attr="data-biodata-id=${keahlian.biodataId}">Simpan</button>
+       	</div>
+     </div>
+</form>
+
+</body>
+</html>

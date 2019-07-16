@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+<label>Profil</label>
+<button><span id="idbtnplus" class="glyphicon glyphicon-plus-sign"></span></button>
+<br>	
+
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-profil" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Detail Pelamar</h4>
+				</div>			
+				<div id="idMdlBody">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlReferensi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Referensi</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyReferensi">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="idMdlHapusReferensi" class="modal fade" tabindex="-1" role="dialog">
+						<div class="modal-dialog modal-hapus-referensi" role="document">
+							<div class="modal-content">
+								<div class="modal-header modal-header-hapus-referensi">
+        						<a type="button" class="white-red-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+								<h4 class="modal-title modal-title-font">Detail Pelamar</h4>
+							</div>			
+							<div id="idMdlBodyHapusReferensi">
+					
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				
+	<div id="idMdlKeteranganTambahan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Keterangan Tambahan</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyKeteranganTambahan">
+								</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<div id="idMdlUbahKeteranganTambahan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-referensi" role="document">
+			<div class="modal-content">
+				<div class="modal-header modal-header-profil">
+        			<a type="button" class="white-x" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#10006;</span></a>
+						<h4 class="modal-title modal-title-font">Keterangan Tambahan</h4>
+				</div>			
+				<div class="modal-body" id="idMdlBodyUbahKeteranganTambahan">
+	</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->			
+	
+	
+	
+	<script>
+	$('#idbtnplus').click(function() {
+		debugger;
+		$.ajax({
+			url : './lain-lain',
+			method : 'Get',
+			success : function(model) {
+				debugger;
+
+				$('#idModal').modal('show');
+				$('#idMdlBody').html(model);
+				
+				$('#btnCirclePlus').click(function() {
+					debugger;
+					$.ajax({
+						url : './referensi',
+						method : 'Get',
+						success : function(model) {
+							debugger;
+
+							$('#idMdlReferensi').modal('show');
+							$('#idMdlBodyReferensi').html(model);
+							
+						},
+						error : function(model) {
+							debugger;
+						}
+					})
+
+				});
+				
+				$('.table-responsive').on('show.bs.dropdown', function () {
+				    $('.table-responsive').css( "overflow", "inherit" );
+					});
+
+					$('.table-responsive').on('hide.bs.dropdown', function () {
+				    $('.table-responsive').css( "overflow", "auto" );
+					})
+
+				$(".clDropdown").click(function() {
+					debugger;
+					var x = $(this).data('value');
+					if (x == 0) {
+						$.ajax({
+							url : './referensi',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+								/* jahit model return dari controller ke body modal */
+								$('#idMdlBodyReferensi').html(model);
+								/* pop up modalnya */
+								$('#idMdlReferensi').modal('show');
+							},
+							error : function(model) {
+								debugger;
+							}
+						});
+					} else if (x == 1) {
+						debugger;
+						$.ajax({
+							url : './hapus_referensi',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+								/* jahit model return dari controller ke body modal */
+								$('#idMdlBodyHapusReferensi').html(model);
+								/* pop up modalnya */
+								$('#idMdlHapusReferensi').modal('show');
+							},
+							error : function(model) {
+								debugger;
+							}
+						});
+					}
+				});
+					
+					$('#idBtnKeteranganTambahan').click(function() {
+						debugger;
+						$.ajax({
+							url : './keterangan_tambahan',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+
+								$('#idMdlKeteranganTambahan').modal('show');
+								$('#idMdlBodyKeteranganTambahan').html(model);
+								
+							},
+							error : function(model) {
+								debugger;
+							}
+						})
+
+					});	
+					
+					$('#idBtnUbahKeteranganTambahan').click(function() {
+						debugger;
+						$.ajax({
+							url : './ubah_keterangan_tambahan',
+							method : 'Get',
+							success : function(model) {
+								debugger;
+
+								$('#idMdlUbahKeteranganTambahan').modal('show');
+								$('#idMdlBodyUbahKeteranganTambahan').html(model);
+								
+							},
+							error : function(model) {
+								debugger;
+							}
+						})
+
+					});	
+				
+							},
+			error : function(model) {
+				debugger;
+			}
+		})
+		
+
+	});
+	
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css" />
+<link rel="stylesheet" href="../styles/css/sertifikasi.css" />
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+	<!-- NEW SERTIFIKASI-->
+	<div id="idMdlNewSertifikasi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sertifikasi" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body" id="idMdlBodyNewSertifikasi">
+					<p>One fine body&hellip;</p>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- Modal -->
+
+	<!-- Ubah SERTIFIKASI-->
+	<div id="idMdlUbahSertifikasi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sertifikasi" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body" id="idMdlBodyUbahSertifikasi">
+					<p>One fine body&hellip;</p>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	<!-- Hapus SERTIFIKASI-->
+	<div id="idMdlHapusSertifikasi" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sertifikasi" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body" id="idMdlBodyHapusSertifikasi">
+					<p>One fine body&hellip;</p>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<h2>
+		Sertifikasi
+		<button>
+			<span id="idbtnplus" class="glyphicon glyphicon-plus-sign"></span>
+		</button>
+	</h2>
+	<hr>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Sekolah/Intansi</td>
+					<td>Jenjang</td>
+					<td>Periode</td>
+					<td>Jurusan</td>
+					<td>IPK</td>
+					<td>#</td>
+				</tr>
+			</thead>
+			<tbody id="idTbodySertifikasi">
+				<tr>
+					<td>Sekolah/Intansi</td>
+					<td>Jenjang</td>
+					<td>Periode</td>
+					<td>Jurusan</td>
+					<td>IPK</td>
+					<td>
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								More <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li class="clDropdown" data-value="0"><a href="#">Edit</a></li>
+								<li class="clDropdown" data-value="1"><a href="#">Delete</a></li>
+							</ul>
+						</div>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script>
+		$('.table-responsive').on('show.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "inherit");
+		});
+
+		$('.table-responsive').on('hide.bs.dropdown', function() {
+			$('.table-responsive').css("overflow", "auto");
+		})
+
+		$('#idbtnplus').click(function() {
+			debugger;
+			//$('#idMdlNewBarang').modal('show');
+
+			/* panggil url tambah barang menggunakan ajax*/
+			$.ajax({
+				url : './newsertifikasi',
+				method : 'Get',
+				success : function(model) {
+
+					/* jahit model return dari controller ke body modal */
+					$('#idMdlBodyNewSertifikasi').html(model);
+					/* pop up modalnya */
+					$('#idMdlNewSertifikasi').modal('show');
+				},
+				error : function(model) {
+					debugger;
+				}
+			});
+
+		});
+
+		$(".clDropdown").click(function() {
+			debugger;
+			var x = $(this).data('value');
+			if (x == 0) {
+				$.ajax({
+					url : './ubahsertifikasi',
+					method : 'Get',
+					success : function(model) {
+						debugger;
+						/* jahit model return dari controller ke body modal */
+						$('#idMdlBodyUbahSertifikasi').html(model);
+						/* pop up modalnya */
+						$('#idMdlUbahSertifikasi').modal('show');
+					},
+					error : function(model) {
+						debugger;
+					}
+				});
+			} else if (x == 1) {
+				debugger;
+				$.ajax({
+					url : './hapussertifikasi',
+					method : 'Get',
+					success : function(model) {
+						debugger;
+						/* jahit model return dari controller ke body modal */
+						$('#idMdlBodyHapusSertifikasi').html(model);
+						/* pop up modalnya */
+						$('#idMdlHapusSertifikasi').modal('show');
+					},
+					error : function(model) {
+						debugger;
+					}
+				});
+			}
+		});
+	</script>
+
+
+</body>
+</html>

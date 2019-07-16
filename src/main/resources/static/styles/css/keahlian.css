@@ -1,0 +1,118 @@
+@charset "ISO-8859-1";
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  background-color:	#000000;
+}
+
+#idlabeltitle{
+	color: blue;
+}
+
+hr {
+    height: 5px;
+    color: #010067;
+    background-color: #010067;
+    border: ;
+}
+
+th, td {
+	color: #010067;
+  border-bottom: 2px solid #010067;
+}
+
+.modal-addkeahlian{
+	width: 720px;
+	border-radius: 10px;
+	border: 2px solid #25158c;
+}
+
+.modal-addkeahlianheader{
+	background-color: #25158c;
+	
+}
+
+.modal-addkeahliantitle{
+	color: #ffffff;
+}
+
+
+.modal-ubahkeahlian{
+	width: 720px;
+	border-radius: 10px;
+	border: 2px solid #25158c;
+}
+.modal-ubahkeahlianheader{
+	background-color: #25158c;
+	
+}
+
+.modal-ubahkeahliantitle{
+	color: #ffffff;
+}
+
+
+
+.modal-hapuskeahlianheader{
+	background-color: #FF0000;
+	
+}
+
+.modal-hapuskeahliantitle{
+	color: #ffffff;
+}
+
+.modal-keahlianhapus{
+	width: 720px;
+	border-radius: 10px;
+	border: 2px solid #FF0000;
+}
+
+.modal-hapuskeahlianbody{
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+}
+
+/* hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 3px;
+  color: blue;
+} */
+
+
+/* input[name=namakeahlian] {
+  width: 150%;
+  padding: 12px 30px;
+  margin: 8px 0;
+  box-sizing: border-box;	
+} */
+
+/* #idFrmAddKeahlian{ 
+  height: 300px;
+  width: 500px;
+} */
+
+
+
+/* #idBtnBatalAddKeahlian{
+	background-color:	#F44336;	
+	color: white;	
+} */
+
+/* #idBtnSimpanAddKeahlian{
+	background-color:	#008CBA;	
+	color: white;	
+} */

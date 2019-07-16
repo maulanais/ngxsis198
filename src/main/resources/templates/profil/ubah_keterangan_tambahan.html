@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/bootstrap.edit.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+	<!-- Tempat modal dibody sebelum script -->
+	
+					   <div class="row">
+              <div class="col-md-6">
+                <p style="color:#25158c">Kontak Darurat (Keluarga Tidak Serumah) *</p>
+                <input class="rcorners2" type="" name=""><br><br>
+                <p style="color:#25158c">Nomor Telp. Darurat *</p>
+                <input class="rcorners2" type="" name=""><br><br>
+              </div>
+              <div class="col-md-3">
+                <p style="color:#25158c">Gaji yang Diharapkan (IDR) *</p>
+                <input class="rcorners2-div2" type="" name=""><br><br>
+                <p style="color:#25158c">Kapan Siap Mulai Bekerja *</p>
+                <input class="rcorners2-div2" type="" name=""><br><br>
+              </div>
+              <div class="col-md-3"><br><br>
+                <div class="col-md-2">
+                  <label class="container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="col-md-10">
+                  <p class="profil">Negoitable<p><br><br><br>
+                </div>
+                <div class="col-md-2">
+                  <label class="container">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="col-md-10">
+                  <p class="profil">Bersedia ditempatkan diluar kota<p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-1">
+                  <label class="container">
+                    <input type="checkbox" id="idCekBoxMelamar">
+                    <span class="checkmark"></span>
+                  </label>
+                  </div>
+                <div class="col-md-11">
+                  <p class="profil">Sedang Melamar Ditempat Lain</p>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <p style="color:#25158c">Kontak Darurat (Keluarga Tidak Serumah)</p>
+                <input class="rcorners2" type="text" id="idKontakDarurat" disabled><br><br>
+              </div>
+              <div class="col-md-6">
+                <p style="color:#25158c">Tahapan Seleksi</p>
+                <input class="rcorners2" type="" name="" id="idTahapanSeleksi" disabled><br><br>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-1">
+                  <label class="container">
+                    <input type="checkbox" id="idCekBoxSakit">
+                    <span class="checkmark"></span>
+                  </label>
+                  </div>
+                <div class="col-md-11">
+                  <p class="profil">Pernah Sakit Berat/ Lama Sembuh</p>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <p style="color:#25158c">Nama Penyakit</p>
+                <input class="rcorners2" type="text" id="idNamaPenyakit" disabled><br><br>
+              </div>
+              <div class="col-md-6">
+                <p style="color:#25158c">Kapan (Waktu Sakit)</p>
+                <input class="rcorners2" type="" name="" id="idWaktuSakit" disabled><br><br>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-1">
+                  <label class="container">
+                    <input type="checkbox" id="idCekBoxPsikotes">
+                    <span class="checkmark"></span>
+                  </label>
+                  </div>
+                <div class="col-md-11">
+                  <p class="profil">Pernah Mengikuti Psikotes</p>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <p style="color:#25158c">Keperluan Psikotes</p>
+                <input class="rcorners2" type="text" id="idKeperluanPsikotes" disabled><br><br>
+              </div>
+              <div class="col-md-6">
+                <p style="color:#25158c">Kapan (Waktu Psikotes)</p>
+                <input class="rcorners2" type="" name="" id="idWaktuPsikotes" disabled><br><br>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p style="color:#25158c">Persyaratan yang Diperlukan untuk Jabatan yang Dilamar (menurut kandidat/ karyawan)</p>
+                <input class="rcorners2-div12" type="" name="" id="idWaktuPsikotes"><br><br>
+                <p style="color:#25158c">Keterangan Lain yang Ingin Dikemukakan</p>
+                <input class="rcorners2-div12" type="" name="" id="idWaktuPsikotes"><br><br>
+              </div>
+            </div>
+
+            <div class="row">  
+              <div class="col-md-4"></div>
+               <div class="col-md-4"></div>
+               <div class="col-md-4">
+                 <div class="btn-group" role="group" aria-label="Basic example">
+                   <button type="button" class="btn btn-secondary button-join-left"><b>Batal</b></button>
+                   <button type="button" class="btn btn-secondary button-join-right"><b>Simpan</b></button>
+                 </div>
+               </div>
+            </div>
+
+
+
+				
+
+	<script>
+
+document.getElementById('idCekBoxMelamar').onchange = function() {
+    document.getElementById('idKontakDarurat').disabled = !this.checked;
+    document.getElementById('idTahapanSeleksi').disabled = !this.checked;
+};
+document.getElementById('idCekBoxSakit').onchange = function() {
+    document.getElementById('idNamaPenyakit').disabled = !this.checked;
+    document.getElementById('idWaktuSakit').disabled = !this.checked;
+};
+document.getElementById('idCekBoxPsikotes').onchange = function() {
+    document.getElementById('idKeperluanPsikotes').disabled = !this.checked;
+    document.getElementById('idWaktuPsikotes').disabled = !this.checked;
+};
+</script>
+
+</body>
+</html>

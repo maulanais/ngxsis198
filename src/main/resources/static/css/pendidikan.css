@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+
+hr {
+    height: 5px;
+    color: #010067;
+    background-color: #010067;
+    border: ;
+}
+
+th, td {
+	color: #010067;
+  border-bottom: 2px solid #010067;
+}
+
+.clKepalaTable{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.modal-pendidikan{
+	width: 1250px;
+}

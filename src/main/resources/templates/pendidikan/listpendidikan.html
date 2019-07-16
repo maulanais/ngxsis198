@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<label><h1>Pendidikan</h1></label>
+<button type="button" class="btn btn-circle idbtnplus"><span  class="glyphicon glyphicon-plus" style="color:white"></span></button>
+<br>
+<br>
+<hr>
+<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>Sekolah/Intansi</td>
+					<td>Jenjang</td>
+					<td>Periode</td>
+					<td>Jurusan</td>
+					<td>IPK</td>
+					<td>#</td>
+				</tr>
+			</thead>
+			<tbody id="idTbodyPendidikan">
+				<tr th:each="item : ${keypendidikan}">
+					<td th:text ="${item.school_name}">Sekolah/Intansi</td>
+					<td th:text ="${item.education_level_id}">Jenjang</td>
+					<td th:text ="${item.entry_year + '-' + item.graduation_year}">Periode</td>
+					<td th:text ="${item.major}">Jurusan</td>
+					<td th:text ="${item.gpa}">IPK</td>
+					<td> 
+					  <div class="dropdown">
+						  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">More
+						  <span class="caret"></span></button>
+						  <ul class="dropdown-menu">
+						    <li class="clDropdown" data-value="0"><a href="#">Ubah</a></li>
+						    <li class="clDropdown" data-value="1"><a href="#">Hapus</a></li>
+						  </ul>
+						</div>
+					</td>
+				
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+
+
+
+	<script>
+$('.table-responsive').on('show.bs.dropdown', function () {
+    $('.table-responsive').css( "overflow", "inherit" );
+});
+
+$('.table-responsive').on('hide.bs.dropdown', function () {
+    $('.table-responsive').css( "overflow", "auto" );
+})
+
+$('.idbtnplus').click(function() {
+	debugger;
+				//$('#idMdlNewBarang').modal('show');
+
+				/* panggil url tambah barang menggunakan ajax*/
+				$.ajax({
+					url : './newpendidikan',
+					method : 'Get',
+					success : function(model) {
+
+						/* jahit model return dari controller ke body modal */
+						$('#idMdlBodyNewpendidikan').html(model);
+						/* pop up modalnya */
+						$('#idMdlNewpendidikan').modal('show');
+					},
+					error : function(model) {
+						debugger;
+					}
+				});
+
+			});
+			
+$(".clDropdown").click(function() {
+	debugger;
+	var x = $(this).data('value');
+	if (x == 0) {
+		$.ajax({
+			url : './ubahpendidikan',
+			method : 'Get',
+			success : function(model) {
+				debugger;
+				/* jahit model return dari controller ke body modal */
+				$('#idMdlBodyUbahpendidikan').html(model);
+				/* pop up modalnya */
+				$('#idMdlUbahpendidikan').modal('show');
+			},
+			error : function(model) {
+				debugger;
+			}
+		});
+	} else if (x == 1) {
+		debugger;
+		$.ajax({
+			url : './hapuspendidikan',
+			method : 'Get',
+			success : function(model) {
+				debugger;
+				/* jahit model return dari controller ke body modal */
+				$('#idMdlBodyHapuspendidikan').html(model);
+				/* pop up modalnya */
+				$('#idMdlHapuspendidikan').modal('show');
+			},
+			error : function(model) {
+				debugger;
+			}
+		});
+	}
+});
+			
+</script>
+
+	
+</body>
+</html>

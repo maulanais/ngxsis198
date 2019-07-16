@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../styles/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../styles/css/jquery-ui.min.css" />
+<link rel="stylesheet" href="../styles/datatables.min.css"/>
+<link rel="stylesheet" href="../css/pendidikan.css"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<script type="text/javascript" src="../scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="../styles/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../scripts/datatables.min.js"></script>
+
+<script type="text/javascript" src="../scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../scripts/jquery.mask.min.js"></script>
+</head>
+<body>
+
+	<!-- Tempat modal dibody sebelum script -->
+	<div id="idMdlNewpendidikan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Tambah Pendidikan</h4></div>
+			
+				<div class="modal-body" id="idMdlBodyNewpendidikan"></div>
+
+			</div>
+			 <div class="modal-footer"></div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	<!-- Ubah SERTIFIKASI-->
+	<div id="idMdlUbahpendidikan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-pendidikan" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body" id="idMdlBodyUbahpendidikan">
+					<p>One fine body&hellip;</p>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	
+	
+	
+	
+	<!-- Hapus SERTIFIKASI-->
+	<div id="idMdlHapuspendidikan" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-delete" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+				<div class="col-xs-12">
+					<div class="row">
+						<div class="col-xs-2">
+							<i class="glyphicon glyphicon-trash center"
+								style="font-size: 50px"></i>
+						</div>
+						<div class="col-xs-8">
+							<div class="clTulisanHapus center " id="idMdlBodyHapuspendidikan">Anda
+								Yakin ingin menghapus Pelatihan?</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-offset-8">
+					<div class="btn-group">
+						<button type="button" class="btn btn2">Batal</button>
+						<button type="button" class="btn btn1">Simpan</button>
+					</div>
+				</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	
+	
+	
+	<div id="idDivTablePendidikan"></div>
+	<script>
+		$(document).ready(function() {
+		
+
+			$.ajax({
+				url : './listpendidikan',
+				method : 'Get',
+				success : function(model) {
+					$('#idDivTablePendidikan').html(model);
+				},
+				error : function(model) {
+				}
+			});
+			
+		});
+		
+		
+		
+		
+		</script>
+	
+</body>
+</html>
