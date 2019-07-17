@@ -12,7 +12,7 @@ import com.xsis.model.X_Keahlian;
 public interface X_KeahlianRepo extends JpaRepository<X_Keahlian, Long> {
 	
 	
-	@Query("SELECT x FROM X_Keahlian  x WHERE x.isDelete=false AND x.biodataId= :biodataId ORDER BY x.modifiedOn desc, x.createdOn desc ")
+	@Query("SELECT x FROM X_Keahlian  x WHERE x.isDelete=false AND x.biodataId= :biodataId ORDER BY x.modifiedOn desc, x.createdOn desc")
 	 public List<X_Keahlian> findByBiodataId(@Param("biodataId") Long biodataId); 
 	 
 	// yang aktif
