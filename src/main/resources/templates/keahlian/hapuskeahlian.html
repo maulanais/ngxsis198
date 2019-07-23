@@ -21,14 +21,14 @@
 			</div>
 			<div class="col-md-9 col-md-9">
 				<h4 class="text-danger">Yakin akan menghapus data keahlian</h4>
-				<h4 class="text-danger" th:text="${keahlian.skillName}"></h4>
+				<h4 class="text-danger"  style="font-weight: bold" th:text="${keahlian.skillName}"></h4>
 			</div>
 		</div>
 		
-		<div class="col-md-offset-9">
+		<div class="modal-footer formdeletebuttons">
 		<div class="btn-group">
        		<button type="button" class="btn btn-warning" id="btn-close-hapus">Tidak</button>
-       		<button type="submit" class="btn btn-danger" >Ya</button>
+       		<button type="submit" class="btn btn-danger submit-deleteform" th:attr="data-biodata-id=${keahlian.biodataId}" >Ya</button>
        	</div>
        	</div>
   	</div>

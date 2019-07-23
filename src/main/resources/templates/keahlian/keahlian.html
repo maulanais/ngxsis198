@@ -26,9 +26,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>NAMA KEAHLIAN</th>
-					<th>LEVEL KEAHLIAN</th>
-					<th>#</th>
+					<th id="idThNamaKeahlian">NAMA KEAHLIAN</th>
+					<th id="idThLevelKeahlian">LEVEL KEAHLIAN</th>
+					<th id="idThAction">#</th>
 				</tr>
 			</thead>
 			<tbody id="list-keahlian">
@@ -37,10 +37,10 @@
 					<td th:text="${item.skillLevel.name}" ></td>
 					<td>
 						<div class="btn-group">
-							<button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm" type="button" aria-expanded="false">
+							<button data-toggle="dropdown" class=" btn dropdown-toggle btn-sm ListButton" type="button" aria-expanded="false">
 								More <span class="caret"></span>
 							</button>
-							<ul role="menu" class="dropdown-menu">
+							<ul role="menu" class="dropdown-menu" >
 		                      <li><a th:href="@{/keahlian/ubah/{sid}(sid=${item.id})}" class="btn-ubah">Ubah</a></li>
 		                      <li><a th:href="@{/keahlian/hapus/{sid}(sid=${item.id})}" class="btn-hapus">Hapus</a></li>
 		                    </ul>
@@ -127,13 +127,18 @@
 				// dapatkan url dari attribute action dari form #form-keahlian
 				// lihat di file _create.html
 
-				debugger
+				debugger;
 				if( !$('#idAddSkillName').val()) {
-					alert("Nama Keahlian harus diisi");
+					alert("Nama Keahlian harus diisi!");
+					event.preventDefault();
+				}
+				else if($('#idAddSkillName').val().trim()== "")
+				{
+					alert("Nama Keahlian tidak boleh diisi spasi saja!");
 					event.preventDefault();
 				}
 				else if( !$('#idAddSkillLevel').val() ) {
-					alert("Level Keahlian harus dipilih");
+					alert("Level Keahlian harus dipilih!");
 					event.preventDefault();
 				}
 
@@ -141,8 +146,13 @@
 				var biodataId = $('.save-form').attr('data-biodata-id');
 				var urlredir= './'+biodataId 
 				var url = $(this).attr('action');
+				debugger;
+				$("input, textarea").each(function(){
+					  $(this).val(jQuery.trim($(this).val()));
+				});
 				// datakan data form dengan method serialize
 				var data = $(this).serialize();
+				debugger;
 				
 				$.ajax({
 					url:url,
@@ -217,7 +227,19 @@
 				var biodataId = $('.save-editform').attr('data-biodata-id');
 				var urlredir= './'+biodataId 
 				debugger;
-				if( !$('#idubahskilllevel').val() ) { 
+				
+				debugger;
+				if( !$('#idUbahSkillName').val()) {
+					alert("Nama Keahlian harus diisi!");
+					event.preventDefault();
+				}
+				else if($('#idUbahSkillName').val().trim()== "")
+				{
+					alert("Nama Keahlian tidak boleh diisi spasi saja!");
+					event.preventDefault();
+				}
+				
+				else if( !$('#idubahskilllevel').val() ) { 
 					debugger;
 					alert("Level keahlian harus dipilih");
 					return false;
@@ -225,6 +247,10 @@
 				else{
 				debugger;
 				var url = $(this).attr('action');
+				debugger;
+				$("input, textarea").each(function(){
+					  $(this).val(jQuery.trim($(this).val()));
+				});
 				// datakan data form dengan method serialize
 				var data = $(this).serialize();
 				debugger;
@@ -249,6 +275,8 @@
 			
 			$("#idMdlHapus").on('submit','#form-hapuskeahlian',function(){
 				debugger;
+				var biodataId = $('.submit-deleteform').attr('data-biodata-id');
+				var urlredir= './'+biodataId 
 				// dapatkan url dari attribute action dari form #form-keahlian
 				// lihat di file _create.html
 				var url = $(this).attr('action');
@@ -262,6 +290,7 @@
 					success:function(data){
 						debugger;
 						$("#idMdlHapus").modal('hide');
+						window.location.replace(urlredir);
 						/* window.location.replace("http://localhost:8585/keahlian"); */
 					}
 				});

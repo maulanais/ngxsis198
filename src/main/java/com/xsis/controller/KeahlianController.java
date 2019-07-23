@@ -62,7 +62,7 @@ public class KeahlianController {
 	
 	@GetMapping(value = "/keahlian/list/{bid}")
 	private ModelAndView list(@PathVariable("bid") Long biodataId) {
-		// view sertifkasi
+		// view list keahlian
 		ModelAndView view = new ModelAndView("keahlian/listkeahlian");
 		// get biodata Id
 		X_Biodata biodata = this.biorepo.findById(biodataId).orElse(null);
@@ -77,7 +77,7 @@ public class KeahlianController {
 	
 	@GetMapping(value = "/keahlian/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder keahlian file _form.html
+		// menampilkan view dari folder keahlian file newkeahlian.html
 		ModelAndView view = new ModelAndView("keahlian/newkeahlian");
 		// membuat object keahlian model
 		X_Keahlian keahlian = new X_Keahlian();
@@ -87,7 +87,7 @@ public class KeahlianController {
 		List<X_Skill_Level> listSkill = this.skillleverscr.listall();
 		// add object keahlian
 		view.addObject("keahlian", keahlian);
-		// add object list mothn
+		// add object list skill
 		view.addObject("listSkill", listSkill);
 		return view;
 	}
@@ -105,15 +105,13 @@ public class KeahlianController {
 		System.out.println(keahlian);
 		view.addObject("keahlian", keahlian);
 		keahlianscr.simpanbaru(keahlian);
-		view.addObject("keahlian", new X_Keahlian());
-
 		return view;
 	}
 	
 	
-	@GetMapping(value = "/keahlian/ubah/{sid}") // bid sebagai vaiable biodataId
+	@GetMapping(value = "/keahlian/ubah/{sid}") 
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
-		// menampilkan view dari folder keahlian file _form.html
+		// menampilkan view dari folder keahlian file editkeahlian.html
 		ModelAndView view = new ModelAndView("keahlian/editkeahlian");
 		// membuat object keahlian model
 		X_Keahlian keahlian = this.keahlianrepo.findById(sid).orElse(null);
@@ -121,22 +119,20 @@ public class KeahlianController {
 		List<X_Skill_Level> listSkill = this.skillleverscr.listall();
 		// add object keahlian
 		view.addObject("keahlian", keahlian);
-		// add object list mothn
+		// add object list skill
 		view.addObject("listSkill", listSkill);
 		return view;
 	}
 	
 	@PutMapping(value = "/keahlian/saveubahkeahlian")
 	public ModelAndView save(@Valid @ModelAttribute("keahlian") X_Keahlian keahlian, BindingResult result) {
-		// menampilkan view dari folder keahlian file _form.html
+		// menampilkan view dari folder keahlian file editkeahlian.html
 		ModelAndView view = new ModelAndView("keahlian/editkeahlian");
 		
 		List<X_Skill_Level> listSkill = this.skillleverscr.listall();
-		// add object list mothn
+		// add object list skill
 		view.addObject("listSkill", listSkill);
 		
-
-			// add object keahlian dengan error nya ke view
 			view.addObject("keahlian", keahlian);
 	
 			// simpan ke service
@@ -149,7 +145,7 @@ public class KeahlianController {
 	/* bagian hapus keahlian */
 	@GetMapping(value = "/keahlian/hapus/{sid}")
 	private ModelAndView hapus(@PathVariable("sid") Long sid) {
-		// view keahlian
+		// view hapuskeahlian
 		ModelAndView view = new ModelAndView("keahlian/hapuskeahlian");
 		// get keahlian
 		X_Keahlian keahlian = this.keahlianrepo.findById(sid).orElse(null);

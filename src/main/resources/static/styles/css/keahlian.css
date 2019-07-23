@@ -11,8 +11,20 @@
   background-color:	#000000;
 }
 
+#btn-close-form{
+	color: #ffffff;
+}
+
+/* button dropdown more */
+.ListButton{
+	background-color:#010067;
+	color: #ffffff;
+}
+
+
+
 #idlabeltitle{
-	color: blue;
+	color: #010067;
 }
 
 hr {
@@ -22,19 +34,32 @@ hr {
     border: ;
 }
 
-th, td {
+/* Bagian Table list */
+
+th,td {
 	color: #010067;
   border-bottom: 2px solid #010067;
 }
 
+#idThNamaKeahlian,#idThLevelKeahlian,#idThAction{
+	color: #010067;
+  border-bottom: 2px solid #010067;
+}
+
+
+/* /////////////////////////////////////// */
+
+
+/* Form add keahlian */
+
 .modal-addkeahlian{
 	width: 720px;
 	border-radius: 10px;
-	border: 2px solid #25158c;
+	border: 2px solid #010067;
 }
 
 .modal-addkeahlianheader{
-	background-color: #25158c;
+	background-color: #010067;
 	
 }
 
@@ -42,20 +67,62 @@ th, td {
 	color: #ffffff;
 }
 
+#idLabelNewNamaKeahlian,#idLabelNewLevelKeahlian,#idLabelNewCatatan{
+	
+	color: #010067;
+	
+}
+
+#idAddSkillName,#idAddSkillLevel,#idAddCatatan{
+	color: #010067;
+	border: 1px solid #010067;
+}
+
+
+.formnewbuttons{
+	
+	border-style:hidden;
+}
+
+
+/* ////////////// */
+
+
+/* Form ubah keahlian */
 
 .modal-ubahkeahlian{
 	width: 720px;
 	border-radius: 10px;
-	border: 2px solid #25158c;
+	border: 2px solid #010067;
 }
 .modal-ubahkeahlianheader{
-	background-color: #25158c;
+	background-color: #010067;
 	
 }
 
 .modal-ubahkeahliantitle{
 	color: #ffffff;
 }
+
+
+#idLabelUbahNamaKeahlian,#idLabelUbahLevelKeahlian,#idLabelUbahCatatan{
+	color: #010067;
+}
+
+#idUbahSkillName,#idubahskilllevel,#idUbahCatatan{
+	color: #010067;
+	border: 1px solid #010067;
+}
+
+
+.formubahbuttons{
+	
+	border-style:hidden;
+	
+}
+
+/* //////////////// */
+
 
 
 
@@ -69,7 +136,7 @@ th, td {
 }
 
 .modal-keahlianhapus{
-	width: 720px;
+	width: 500px;
 	border-radius: 10px;
 	border: 2px solid #FF0000;
 }
@@ -81,38 +148,6 @@ th, td {
     padding: 15px;
 }
 
-/* hr { 
-  display: block;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: solid;
-  border-width: 3px;
-  color: blue;
-} */
-
-
-/* input[name=namakeahlian] {
-  width: 150%;
-  padding: 12px 30px;
-  margin: 8px 0;
-  box-sizing: border-box;	
-} */
-
-/* #idFrmAddKeahlian{ 
-  height: 300px;
-  width: 500px;
-} */
-
-
-
-/* #idBtnBatalAddKeahlian{
-	background-color:	#F44336;	
-	color: white;	
-} */
-
-/* #idBtnSimpanAddKeahlian{
-	background-color:	#008CBA;	
-	color: white;	
-} */
+.formdeletebuttons{
+	border-style:hidden;
+}

@@ -10,4 +10,10 @@ public class AuthenticationController {
 	public String changepassword() {
 		return ("password/changepassword");
 	}
+	
+	
+	@GetMapping(value = "/forgotpassword")
+	public String forgotpassword() {
+		return ("password/forgotpassword");
+	}
 }

@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Template Layout Admin LTE</title>
+<link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+</head>
 <body>
-<div id="errormsg" style="display:none"></div>
-<div>
-    <input id="oldpass" name="oldpassword" type="password" />
-    <input id="pass" name="password" type="password" />
-    <input id="passConfirm" type="password" />              
-    <span id="error" style="display:none">Password mismatch</span>
-                     
-   <button type="submit" onclick="savePass()">Change Password</button>
-</div>
-  
-<script src="jquery.min.js"></script>
-<script type="text/javascript">
- 
-var serverContext = [[@{/}]];
-function savePass(){
-    var pass = $("#pass").val();
-    var valid = pass == $("#passConfirm").val();
-    if(!valid) {
-      $("#error").show();
-      return;
-    }
-    $.post(serverContext + "user/updatePassword",
-      {password: pass, oldpassword: $("#oldpass").val()} ,function(data){
-        window.location.href = serverContext +"/home.html?message="+data.message;
-    })
-    .fail(function(data) {
-        $("#errormsg").show().html(data.responseJSON.message);
-    });
-}
-</script> 
+<!------ Include the above in your HEAD tag ---------->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">			
+			<ul class="nav navbar-nav navbar-left">
+
+			</ul>
+			
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+		</nav>
+
+
+	<div class="container main-container">
+		<div class="col-md-2 sidebar">
+			<ul class="list-group">
+				<li><a href="/keahlian/1" class="list-group-item">Keahlian1</a></li>		
+				<li><a href="/keahlian/2" class="list-group-item">Keahlian2</a></li>	
+				<li><a href="/keahlian/3" class="list-group-item">Keahlian3</a></li>
+	
+				
+			</ul>
+		</div>
+			<div class="col-md-10 content">
+                
+                <div id="fragment"></div>
+                
+            </div> 
+            
+		<footer>
+			<p class="col-md-12" align="center">
+				Copyright &copy; 2019 Batch 198 XSIS Mitra Utama
+			</p>
+		</footer>
+	</div>
 </body>
+<script src="../bootstrap/dist/js/jquery.min.js"></script>
+<script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bootbox/bootbox.min.js"></script>
+<script>
+
+	
+	$('.list-group-item').click(function(){
+		var url=$(this).attr('href');
+		$.ajax({
+			url : url,
+			type : 'get',
+			dataType : 'html',
+			success : function(result) {
+				$('#fragment').html(result);
+			}
+		});
+		
+		return false;
+	});
+	
+</script>
 </html>

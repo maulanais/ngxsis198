@@ -33,7 +33,7 @@ public class X_KeahlianService {
 	public boolean simpanbaru(X_Keahlian keahlian) {
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			keahlian.setCreatedBy(keahlian.getBiodataId());
+			keahlian.setCreatedBy(Long.parseLong("2"));
 			 keahlian.setCreatedOn(timestamp); 
 			 keahlian.setIsDelete(false);
 			 System.out.println(keahlian);
@@ -50,7 +50,7 @@ public class X_KeahlianService {
 		try {
 			
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			keahlian.setModifiedBy(keahlian.getBiodataId());
+			keahlian.setModifiedBy(Long.parseLong("2"));
 			keahlian.setModifiedOn(timestamp);
 			System.out.println(keahlian);
 			keahlianrepo.save(keahlian);
@@ -66,7 +66,7 @@ public class X_KeahlianService {
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			keahlian.setIsDelete(true);
-			keahlian.setDeletedBy(keahlian.getBiodataId());
+			keahlian.setDeletedBy(Long.parseLong("2"));
 			keahlian.setDeletedOn(timestamp); 
 			System.out.println(keahlian);
 			keahlianrepo.save(keahlian);
