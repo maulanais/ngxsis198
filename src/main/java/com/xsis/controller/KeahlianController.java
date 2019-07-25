@@ -94,13 +94,9 @@ public class KeahlianController {
 	
 	
 	@PostMapping(value = "/keahlian/save")
-	public ModelAndView saveadd(@Valid @ModelAttribute("keahlian") X_Keahlian keahlian, BindingResult result) {
+	public ModelAndView saveadd( @ModelAttribute("keahlian") X_Keahlian keahlian) {
 		// menampilkan view dari folder keahlian file newkeahlian.html
 		ModelAndView view = new ModelAndView("keahlian/newkeahlian");
-		
-		List<X_Skill_Level> listSkill = this.skillleverscr.listall();
-		// add object list skill
-		view.addObject("listSkill", listSkill);
 		
 		System.out.println(keahlian);
 		view.addObject("keahlian", keahlian);
@@ -125,18 +121,17 @@ public class KeahlianController {
 	}
 	
 	@PutMapping(value = "/keahlian/saveubahkeahlian")
-	public ModelAndView save(@Valid @ModelAttribute("keahlian") X_Keahlian keahlian, BindingResult result) {
+	public ModelAndView save(@ModelAttribute("keahlian") X_Keahlian keahlian) {
 		// menampilkan view dari folder keahlian file editkeahlian.html
 		ModelAndView view = new ModelAndView("keahlian/editkeahlian");
 		
-		List<X_Skill_Level> listSkill = this.skillleverscr.listall();
-		// add object list skill
-		view.addObject("listSkill", listSkill);
+		X_Keahlian keahlian2 = this.keahlianrepo.findById(keahlian.getId()).orElse(null);
+		keahlian2.setSkillName(keahlian.getSkillName());
+		keahlian2.setSkillLevelId(keahlian.getSkillLevelId());
+		keahlian2.setNotes(keahlian.getNotes());
 		
-			view.addObject("keahlian", keahlian);
-	
 			// simpan ke service
-			keahlianscr.simpanubah(keahlian);
+			keahlianscr.simpanubah(keahlian2);
 		return view;
 	}
 	

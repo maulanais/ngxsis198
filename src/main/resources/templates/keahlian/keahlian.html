@@ -102,7 +102,7 @@
 			$('#idbtnplus').click(function() {
 				debugger;
 				event.preventDefault();
-				// mengambil nilai dari attribute btn-add-keahlian
+				// mengambil nilai dari attribute idbtnplus
 				// lihat sintaks ini th:attr="data-biodata-id=${biodata.id}"
 				var biodataId = $(this).attr('data-biodata-id');
 				
@@ -124,11 +124,13 @@
 			
 			// submit data from atau simpan data keahlian
 			$("#idMdlNewKeahlian").on('submit','#form-addkeahlian', function(){
-				// dapatkan url dari attribute action dari form #form-keahlian
-				// lihat di file _create.html
 
 				debugger;
-				if( !$('#idAddSkillName').val()) {
+				if( !$('#idAddSkillName').val() && !$('#idAddSkillLevel').val() ) {
+					alert("Nama Keahlian harus diisi dan Level Keahlian harus dipilih!");
+					event.preventDefault();
+				}
+				else if( !$('#idAddSkillName').val()) {
 					alert("Nama Keahlian harus diisi!");
 					event.preventDefault();
 				}
@@ -192,8 +194,7 @@
 				event.preventDefault();
 				debugger
 				var url =  $(this).attr('href');
-				// buat ajax untuk create
-				// lihat keahlian controller @GetMapping(value="/keahlian/hapus/{sid}")
+
 				$.ajax({
 					url:url,
 					type:'GET',
@@ -208,8 +209,7 @@
 				// cegah link redirect
 				event.preventDefault();
 				var url =  $(this).attr('href');
-				// buat ajax untuk create
-				// lihat keahlian controller @GetMapping(value="/keahlian/hapus/{sid}")
+
 				$.ajax({
 					url:url,
 					type:'GET',
@@ -229,7 +229,13 @@
 				debugger;
 				
 				debugger;
-				if( !$('#idUbahSkillName').val()) {
+				
+				if( !$('#idUbahSkillName').val() && !$('#idubahskilllevel').val() ) {
+					alert("Nama Keahlian harus diisi dan Level Keahlian harus dipilih!");
+					event.preventDefault();
+				}
+				
+				else if( !$('#idUbahSkillName').val()) {
 					alert("Nama Keahlian harus diisi!");
 					event.preventDefault();
 				}
@@ -277,8 +283,7 @@
 				debugger;
 				var biodataId = $('.submit-deleteform').attr('data-biodata-id');
 				var urlredir= './'+biodataId 
-				// dapatkan url dari attribute action dari form #form-keahlian
-				// lihat di file _create.html
+
 				var url = $(this).attr('action');
 				// datakan data form dengan method serialize
 				var data = $(this).serialize();
@@ -291,7 +296,6 @@
 						debugger;
 						$("#idMdlHapus").modal('hide');
 						window.location.replace(urlredir);
-						/* window.location.replace("http://localhost:8585/keahlian"); */
 					}
 				});
 				// cegah form redirect
