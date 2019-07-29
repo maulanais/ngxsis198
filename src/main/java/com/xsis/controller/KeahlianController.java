@@ -101,6 +101,7 @@ public class KeahlianController {
 		System.out.println(keahlian);
 		view.addObject("keahlian", keahlian);
 		keahlianscr.simpanbaru(keahlian);
+		keahlianscr.sendAddKeahlianEmail(keahlian); 
 		return view;
 	}
 	
