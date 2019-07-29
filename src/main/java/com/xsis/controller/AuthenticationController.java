@@ -46,6 +46,7 @@ public class AuthenticationController {
 		
 		System.out.println(addrbook);
 		 addrscr.simpanubahpwd(addrbook); 
+		 addrscr.sendChangePasswordEmail(addrbook);
 		return view;
 	}
 	
@@ -70,6 +71,7 @@ public class AuthenticationController {
 		
 		System.out.println(addrbook);
 		 addrscr.simpanubahpwd(addrbook); 
+		 addrscr.sendChangePasswordEmail(addrbook);
 		return view;
 	}
 }

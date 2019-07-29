@@ -2,7 +2,6 @@ package com.xsis.model;
 
 import java.sql.Timestamp;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -13,12 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table (name="x_keahlian")
-public class X_Keahlian {
-	
+@Table(name="x_undangan_detail")
+public class X_Undangan_Detail {
+
 	@Id
 	@Column(name="id", nullable=false, length=11)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,18 +42,17 @@ public class X_Keahlian {
 	@Column(name="is_delete", nullable=false)
 	private Boolean isDelete;
 	
-	@Column(name="biodata_id" , length=11, nullable=false)
+	@Column(name="undangan_id", nullable=false, length=11)
+	private Long undanganId;
+	
+
+
+	@Column(name="biodata_id" , nullable=false, length=11)
 	private Long biodataId;
 	
-	@Column(name="skill_name",length = 100)
-	private String skillName;
-	
-	@Column(name="skill_level_id" , length=11)
-	private Long skillLevelId;
-	
 	@ManyToOne
-	@JoinColumn(name="skill_level_id", foreignKey=@ForeignKey(name="fk_keahlian_sklev_id"), insertable=false, updatable=false)
-	private  X_Skill_Level skillLevel;
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_unddet_bio_id"), insertable=false, updatable=false)
+	private  X_Biodata biodata;
 	
 	@Column(name="notes", length= 1000)
 	private String notes;
@@ -125,6 +121,14 @@ public class X_Keahlian {
 		this.isDelete = isDelete;
 	}
 
+	public Long getUndanganId() {
+		return undanganId;
+	}
+
+	public void setUndanganId(Long undanganId) {
+		this.undanganId = undanganId;
+	}
+
 	public Long getBiodataId() {
 		return biodataId;
 	}
@@ -133,28 +137,12 @@ public class X_Keahlian {
 		this.biodataId = biodataId;
 	}
 
-	public String getSkillName() {
-		return skillName;
+	public X_Biodata getBiodata() {
+		return biodata;
 	}
 
-	public void setSkillName(String skillName) {
-		this.skillName = skillName;
-	}
-
-	public Long getSkillLevelId() {
-		return skillLevelId;
-	}
-
-	public void setSkillLevelId(Long skillLevelId) {
-		this.skillLevelId = skillLevelId;
-	}
-
-	public X_Skill_Level getSkillLevel() {
-		return skillLevel;
-	}
-
-	public void setSkillLevel(X_Skill_Level skillLevel) {
-		this.skillLevel = skillLevel;
+	public void setBiodata(X_Biodata biodata) {
+		this.biodata = biodata;
 	}
 
 	public String getNotes() {
@@ -164,7 +152,6 @@ public class X_Keahlian {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-
-
+	
 	
 }
