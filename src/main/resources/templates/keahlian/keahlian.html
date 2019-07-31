@@ -164,14 +164,8 @@
 					success:function(data){
 						// masukan dulu result ke modal
 						$("#idMdlBodyNewKeahlian").html(data);
-						// check jumlah element yang memiliki class has-error
-						var check = $("#idMdlBodyNewKeahlian").find(".has-error").length;
-						// jika tidak ada error
-						if(check==0){
-							debugger;
 							$("#idMdlNewKeahlian").modal('hide');
 							window.location.replace(urlredir);
-							// tampilkan data dengan memanggil method loadData
 						}
 					}
 				});

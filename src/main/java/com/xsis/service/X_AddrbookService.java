@@ -22,8 +22,6 @@ public class X_AddrbookService {
 	@Autowired
 	private X_AddrbookRepo addrrepo;
 	
-    @Autowired
-    private JavaMailSender javaMailSender;
 	
 	
 	public boolean simpanubahpwd(X_Addrbook addrbook,HttpSession httpSession) {
@@ -43,23 +41,6 @@ public class X_AddrbookService {
 		
 	}
 	
-    public boolean sendChangePasswordEmail(X_Addrbook addrbook) {
-    	try {
-    		
-    		X_Addrbook addrbook2 = this.addrrepo.findById(addrbook.getId()).orElse(null);
-    		 SimpleMailMessage msg = new SimpleMailMessage();
-    	        msg.setFrom("adnan@localhost");
-    	        msg.setTo(addrbook2.getEmail());
-    	        msg.setSubject("Testing from Spring Boot");
-    	        msg.setText("Hello World \n Spring Boot Email \n Link Forgot Password \n http://localhost:8585/forgotpassword/"+addrbook2.getFpToken());
 
-    	        javaMailSender.send(msg);
-    		return true;
-    	}catch (Exception e) {
-			// TODO: handle exception
-			return false;
-		}
-       
-    }
 	
 }
