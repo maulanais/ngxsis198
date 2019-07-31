@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -105,6 +108,10 @@ public class X_Biodata {
 	
 	@Column(name="addrbook_id", length=11)
 	private Long addrbookId;
+	
+	@ManyToOne
+	@JoinColumn(name="addrbook_id", foreignKey=@ForeignKey(name="fk_bio_addrbook_id"), insertable=false, updatable=false)
+	private  X_Addrbook addrbook;
 	
 	@Column(name="token", length=10)
 	private String token;
